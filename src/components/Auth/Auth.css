@@ -1,0 +1,36 @@
+.auth {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to right, #ff70a6, #e9ff70);
+  height: 100vh;
+}
+
+.box {
+  /* display: flex;
+  justify-content: center; */
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  height: 45vh;
+  width: 35vw;
+  border: 1px solid grey;
+  box-shadow: 5px 10px 8px #403d3980;
+  box-sizing: border-box;
+  padding: 20px;
+  margin-top: 20vh;
+  position: fixed;
+}
+
+div > h1 {
+  font-size: 60px;
+}
+
+.auth button {
+  height: 50px;
+  width: 70px;
+  background-color: #403d39;
+  color: white;
+}
+
+#userpass {
+  font-weight: 400;
+}
