@@ -2,27 +2,29 @@ import axios from "axios";
 
 const initialState = {
   username: "",
-  password: ""
+  id: 0,
+  profilepic: ""
 };
 
-const NEW_USERNAME = "NEW_USERNAME";
-const NEW_PASSWORD = "NEW_PASSOWORD";
+const HANDLE_USER = "HANDLE_USER";
 
-function reducer(state = initialState, action) {
+export function handleUser(username, id, profilepic) {
+  return {
+    type: HANDLE_USER,
+    payload: { username, id, profilepic }
+  };
+}
+
+export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case NEW_USERNAME:
-      return Object.assign({}, state, { username: action.payload });
-
-    case NEW_PASSWORD:
-      return Object.assign({}, state, { password: action.payload });
+    case HANDLE_USER:
+      return Object.assign({}, state, {
+        username: action.payload.username,
+        id: action.payload.id,
+        profilepic: action.payload.profilepic
+      });
 
     default:
       return state;
   }
-}
-
-export default reducer;
-
-export function registerUser(name) {
-  return;
 }

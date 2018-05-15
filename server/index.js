@@ -13,6 +13,7 @@ massive(process.env.CONNECTION_STRING).then(dbInstance =>
 );
 
 app.post(`api/auth/register`, mc.registerUser);
+app.post(`/api/auth/login`, mc.loginUser);
 
 const port = 3001;
 
