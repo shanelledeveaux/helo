@@ -1,8 +1,10 @@
 .auth {
   display: flex;
   justify-content: center;
-  background: linear-gradient(to right, #ff70a6, #e9ff70);
+  background-image: url("https://i.pinimg.com/564x/d6/84/3e/d6843ec936eb84c0098cbf1a8a0573b9.jpg");
   height: 100vh;
+  width: 100vw;
+  background-size: cover;
 }
 
 .box {
@@ -10,14 +12,15 @@
   justify-content: center; */
   color: white;
   font-family: "Open Sans", sans-serif;
-  height: 45vh;
+  height: 60vh;
   width: 35vw;
-  border: 1px solid grey;
+  border: 1px solid rgb(185, 185, 185);
+  background: linear-gradient(to right, #25627e, #ffe8e8);
   box-shadow: 5px 10px 8px #403d3980;
   box-sizing: border-box;
   padding: 20px;
   margin-top: 20vh;
-  position: fixed;
+  border-radius: 8px;
 }
 
 div > h1 {
@@ -29,6 +32,8 @@ div > h1 {
   width: 70px;
   background-color: #403d39;
   color: white;
+  margin-top: 20px;
+  margin-right: 10px;
 }
 
 #userpass {

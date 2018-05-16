@@ -82,8 +82,10 @@ class Auth extends Component {
             onChange={e => this.updatePassword(e.target.value)}
             type="text"
           />
-          <button onClick={this.loginUser}>LOGIN</button>
-          <button onClick={this.registerUser}>REGISTER</button>
+          <div className="bottondiv">
+            <button onClick={this.loginUser}>LOGIN</button>
+            <button onClick={this.registerUser}>REGISTER</button>
+          </div>
         </div>
       </div>
     );

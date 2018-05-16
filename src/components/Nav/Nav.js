@@ -1,18 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import "./Nav.css";
+import Home from "./home_logo.png";
+import New from "./new_logo.png";
+import ShutDown from "./shut_down.png";
 
 const Nav = props => {
+  console.log(props);
   return (
-    <div>
+    <div className="bar">
       <Link to="/dashboard">
-        <button>Home</button>
+        <img src={Home} />
       </Link>
       <Link to={`/post/${props.postid}`}>
-        <button>New Post</button>
+        <img src={New} />
       </Link>
       <Link to="/">
-        <button>Logout</button>
+        <img src={ShutDown} />
       </Link>
     </div>
   );
