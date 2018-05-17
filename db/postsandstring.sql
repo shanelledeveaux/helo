@@ -1,1 +1,1 @@
-select * from posts join users on users.id=posts.author_id
+select * from posts where title is like $1

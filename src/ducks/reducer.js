@@ -8,10 +8,10 @@ const initialState = {
 
 const HANDLE_USER = "HANDLE_USER";
 
-export function handleUser(username, id, profilepic) {
+export function handleUser(id, username, profilepic) {
   return {
     type: HANDLE_USER,
-    payload: { username, id, profilepic }
+    payload: { id, username, profilepic }
   };
 }
 
@@ -19,8 +19,8 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case HANDLE_USER:
       return Object.assign({}, state, {
-        username: action.payload.username,
         id: action.payload.id,
+        username: action.payload.username,
         profilepic: action.payload.profilepic
       });
 

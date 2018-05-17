@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { handleUser } from "../../ducks/reducer";
 import "./Nav.css";
 import Home from "./home_logo.png";
 import New from "./new_logo.png";
@@ -19,6 +20,9 @@ const Nav = props => {
       <Link to="/">
         <img src={ShutDown} />
       </Link>
+
+      <h1>{props.username}</h1>
+      <h1>{props.profilepic}</h1>
     </div>
   );
 };
@@ -30,4 +34,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {})(Nav);
+export default connect(mapStateToProps, { handleUser })(Nav);

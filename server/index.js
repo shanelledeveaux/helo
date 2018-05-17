@@ -14,7 +14,8 @@ massive(process.env.CONNECTION_STRING).then(dbInstance =>
 
 app.post(`/api/auth/register`, mc.registerUser);
 app.post(`/api/auth/login`, mc.loginUser);
-app.get(`/api/posts/:id`, mc.getAllPosts);
+app.get(`/api/posts`, mc.getAllPosts);
+app.get(`/api/post/:id`, mc.getOne);
 
 const port = 3001;
 
