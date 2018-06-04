@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Dashboard.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { handleUser } from "../../ducks/reducer";
 
@@ -16,8 +17,9 @@ class Dashboard extends Component {
     this.handleCheckBox = this.handleCheckBox.bind(this);
   }
   componentDidMount() {
-    axios.get("/api/posts").then(res => {
+    axios.get(`/api/posts/${this.props.id}`).then(res => {
       this.setState({ posts: res.data });
+      // console.log(res.data);
     });
   }
 
@@ -40,7 +42,7 @@ class Dashboard extends Component {
   submitSearch() {
     axios
       .get(
-        `/api/posts/${2}?userposts=${this.state.myPosts}&string=${
+        `/api/posts/${this.props.id}?userposts=${this.state.myPosts}&string=${
           this.state.search
         }`
       )
@@ -53,7 +55,7 @@ class Dashboard extends Component {
     if (this.state.search.length > 0 || this.state.myPosts(false)) {
       axios
         .get(
-          `/api/posts/?userposts=${this.state.myPosts}string=${
+          `/api/posts/${this.props.id}?userposts=${this.state.myPosts}&string=${
             this.state.search
           }`
         )
@@ -71,13 +73,17 @@ class Dashboard extends Component {
   render() {
     let posts = this.state.posts.map((post, i) => {
       return (
-        <div>
-          {post.title}
-          {post.username}
-          {post.profilepic}
-        </div>
+        <Link to={`/post/${post.id}`}>
+          <div className="small_post">
+            <div className="title">{post.title}</div>
+            <div className="username">{post.username}</div>
+            <div>{post.profilepic}</div>
+          </div>
+        </Link>
       );
     });
+    console.log("PROPS", this.props);
+    console.log("STATE", this.state);
     return (
       <div className="maincontent">
         <div className="searchfield">
@@ -93,10 +99,21 @@ class Dashboard extends Component {
             checked={this.state.myPosts}
             onChange={this.handleCheckBox}
           />
-          <button>Search</button>
-          <button>Reset</button>
+          <button
+            onClick={() =>
+              this.submitSearch(
+                this.props.id,
+                this.state.myPosts,
+                this.state.search
+              )
+            }
+          >
+            Search
+          </button>
+          <button onClick={this.resetSearch}>Reset</button>
+
+          <div className="postbox">{posts}</div>
         </div>
-        <div className="postbox">SOME POSTS</div>
       </div>
     );
   }
@@ -108,4 +125,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { handleUser })(Dashboard);
+export default connect(
+  mapStateToProps,
+  { handleUser }
+)(Dashboard);

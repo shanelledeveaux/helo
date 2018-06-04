@@ -35,7 +35,7 @@ class Auth extends Component {
   }
 
   loginUser() {
-    console.log("login");
+    // console.log("login");
     let user = {
       username: this.state.username,
       password: this.state.password
@@ -43,7 +43,7 @@ class Auth extends Component {
     axios
       .post("/api/auth/login", user)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         this.props.handleUser(
           res.data.id,
           res.data.username,
@@ -92,4 +92,9 @@ class Auth extends Component {
   }
 }
 
-export default withRouter(connect(null, { handleUser })(Auth));
+export default withRouter(
+  connect(
+    null,
+    { handleUser }
+  )(Auth)
+);

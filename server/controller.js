@@ -35,7 +35,7 @@ const getAllPosts = (req, res, next) => {
   } else if (!userposts && !string) {
     // Get all posts where user is not author
     dbInstance
-      .no_postsandstring([userposts, string])
+      .no_postsandstring([id])
       .then(response => res.status(200).send(response))
       .catch(console.log());
   } else if (!userposts && string) {
@@ -54,16 +54,24 @@ const getAllPosts = (req, res, next) => {
 };
 const getOne = (req, res, next) => {
   const db = req.app.get("db");
-  const { id } = req.params;
-  db
-    .get_post([id])
-    .then(post => res.status(200).send(post))
-    .catch(() => res.status(500).send());
+  const { postid } = req.params;
+  db.get_post([postid])
+    .then(response => res.status(200).send(response[0]))
+    .catch(console.log());
+};
+
+const newPost = (req, res, next) => {
+  const db = req.app.get("db");
+  const { userid, title, content } = req.body;
+  db.new_post([userid, title, content])
+    .then(response => res.status(200).send(response))
+    .catch(console.log());
 };
 
 module.exports = {
   registerUser,
   loginUser,
   getAllPosts,
-  getOne
+  getOne,
+  newPost
 };

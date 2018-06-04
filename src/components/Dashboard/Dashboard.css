@@ -11,6 +11,7 @@
   display: flex;
   justify-content: center;
   align-self: center;
+  flex-direction: column;
   height: 80vh;
   width: 60vw;
   background-color: #7db4ce;
@@ -21,3 +22,14 @@
   height: 3vh;
   width: 3vw;
 } */
+
+.small_post {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  border: 1px solid white;
+}
+
+.title {
+  color: navy;
+}

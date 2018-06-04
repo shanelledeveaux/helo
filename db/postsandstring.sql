@@ -1,1 +1,1 @@
-select * from posts where title is like $1
+select * from posts where title like $1;

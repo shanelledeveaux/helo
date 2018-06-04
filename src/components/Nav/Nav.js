@@ -8,13 +8,13 @@ import New from "./new_logo.png";
 import ShutDown from "./shut_down.png";
 
 const Nav = props => {
-  console.log(props);
+  // console.log(props);
   return (
     <div className="bar">
       <Link to="/dashboard">
         <img src={Home} />
       </Link>
-      <Link to={`/post/${props.postid}`}>
+      <Link to="/new">
         <img src={New} />
       </Link>
       <Link to="/">
@@ -29,9 +29,11 @@ const Nav = props => {
 
 function mapStateToProps(state) {
   return {
-    username: state.username,
-    profilepic: state.profilepic
+    id: state.id
   };
 }
 
-export default connect(mapStateToProps, { handleUser })(Nav);
+export default connect(
+  mapStateToProps,
+  { handleUser }
+)(Nav);
