@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleUser } from "../../ducks/reducer";
 import { Link, withRouter } from "react-router-dom";
+import axios from "axios";
+import "./Form.css";
 
 class Form extends Component {
   constructor(props) {
@@ -11,6 +13,8 @@ class Form extends Component {
       title: "",
       content: ""
     };
+
+    this.addNewPost = this.addNewPost.bind(this);
   }
 
   addNewPost() {
@@ -18,6 +22,7 @@ class Form extends Component {
       title: this.state.title,
       content: this.state.content
     };
+    axios.post(`/api/newpost/${this.props.id}`, post);
   }
 
   updateTitle(e) {
@@ -52,9 +57,20 @@ class Form extends Component {
             type="text"
           />
           <div className="bottondiv">
-            <button>Post</button>
+            <Link to="/dashboard">
+              {" "}
+              <button onClick={this.addNewPost}>Post</button>{" "}
+            </Link>
           </div>
         </div>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/jjmCfr_HX0U"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+        />
       </div>
     );
   }

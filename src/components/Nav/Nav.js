@@ -29,7 +29,8 @@ const Nav = props => {
 
 function mapStateToProps(state) {
   return {
-    id: state.id
+    username: state.username,
+    profilepic: state.profilepic
   };
 }
 

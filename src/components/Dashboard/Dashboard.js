@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { handleUser } from "../../ducks/reducer";
+import Song from "./song.mp3";
 
 class Dashboard extends Component {
   constructor() {
@@ -17,7 +18,7 @@ class Dashboard extends Component {
     this.handleCheckBox = this.handleCheckBox.bind(this);
   }
   componentDidMount() {
-    axios.get(`/api/posts/${this.props.id}`).then(res => {
+    axios.get(`/api/posts`).then(res => {
       this.setState({ posts: res.data });
       // console.log(res.data);
     });
@@ -42,9 +43,7 @@ class Dashboard extends Component {
   submitSearch() {
     axios
       .get(
-        `/api/posts/${this.props.id}?userposts=${this.state.myPosts}&string=${
-          this.state.search
-        }`
+        `/api/posts?userposts=${this.state.myPosts}&string=${this.state.search}`
       )
       .then(res => {
         this.setState({ posts: res.data });
@@ -55,7 +54,7 @@ class Dashboard extends Component {
     if (this.state.search.length > 0 || this.state.myPosts(false)) {
       axios
         .get(
-          `/api/posts/${this.props.id}?userposts=${this.state.myPosts}&string=${
+          `/api/posts?userposts=${this.state.myPosts}&string=${
             this.state.search
           }`
         )
@@ -84,6 +83,7 @@ class Dashboard extends Component {
     });
     console.log("PROPS", this.props);
     console.log("STATE", this.state);
+
     return (
       <div className="maincontent">
         <div className="searchfield">
@@ -113,6 +113,10 @@ class Dashboard extends Component {
           <button onClick={this.resetSearch}>Reset</button>
 
           <div className="postbox">{posts}</div>
+          <footer>
+            THIS IS ACTUALLY A FOOTER
+            <audio src={Song} controls />
+          </footer>
         </div>
       </div>
     );
